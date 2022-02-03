@@ -159,7 +159,7 @@ class GANTrainer(object):
     def calculate_vfid(self, netG, epoch, testloader):
         netG.eval()
         with torch.no_grad():
-            eval_modeldataset = StoryGANDataset(netG, len(testloader), testloader.dataset)
+            eval_modeldataset = StoryGANDataset(netG, len(testloader.dataset), testloader.dataset)
             vfid_value = vfid_score(IgnoreLabelDataset(testloader.dataset),
                 eval_modeldataset, cuda=True, normalize=True, r_cache='.cache/seg_story_vfid_reference_score.npz'
             )
